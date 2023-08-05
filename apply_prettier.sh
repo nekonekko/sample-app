@@ -1,0 +1,1 @@
+./node_modules/.bin/prettier --plugin=@prettier/plugin-ruby --write '**/*'
