@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      # redirect after login
+      reset_session      # ログインの直前に必ずこれを書くこと
+      log_in user
+      redirect_to user
     else
       flash.now[:danger] = "Invalid email/passwprd combination"
       render "new", status: :unprocessable_entity
